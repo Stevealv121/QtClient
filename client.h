@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QTcpSocket>
+#include <QDataStream>
+#include <QDebug>
 
 namespace Ui {
 class Client;
@@ -19,11 +21,14 @@ public:
 private slots:
     void on_pushButton_clicked();
     void connectToServer();
+    void connected();
+    void disconnected();
+    void bytesWritten(qint64 bytes);
+    void readyRead();
 
 private:
     Ui::Client *ui;
     QTcpSocket *tcpSocket = nullptr;
-    QDataStream in;
 };
 
 #endif // CLIENT_H

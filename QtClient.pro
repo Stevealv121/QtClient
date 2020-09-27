@@ -7,6 +7,8 @@
 QT       += core gui
 QT += network widgets
 
+CONFIG += console
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = QtClient

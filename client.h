@@ -5,6 +5,12 @@
 #include <QTcpSocket>
 #include <QDataStream>
 #include <QDebug>
+#include <QtCore>
+#include <QtGui>
+#include <QGraphicsScene>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
+#include <QGraphicsPolygonItem>
 
 namespace Ui {
 class Client;
@@ -29,6 +35,11 @@ private slots:
 private:
     Ui::Client *ui;
     QTcpSocket *tcpSocket = nullptr;
+    QDataStream in;
+    QGraphicsScene *scene;
+    QGraphicsEllipseItem *ellipse;
+    QGraphicsLineItem *edge;
+    QGraphicsPolygonItem *arrow;
 };
 
 #endif // CLIENT_H

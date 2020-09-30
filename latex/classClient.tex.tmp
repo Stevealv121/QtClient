@@ -1,0 +1,103 @@
+\hypertarget{classClient}{}\section{Client Class Reference}
+\label{classClient}\index{Client@{Client}}
+
+
+Cliente el cual prueba la distancia mas corta entre dos vertices, solucion dada por el servidor.  
+
+
+
+
+{\ttfamily \#include $<$client.\+h$>$}
+
+
+
+Inheritance diagram for Client\+:
+% FIG 0
+
+
+Collaboration diagram for Client\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classClient_ab9cb979d7fb7dd0bd3bf645279a6ffb5}{Client} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{$\sim$\+Client} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classClient_a2a9162c903a379aa1f86d57eb416e5bd}{set\+Graph} (Q\+String\+List list)
+\begin{DoxyCompactList}\small\item\em Establece el grafo solucionado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String\+List \hyperlink{classClient_a339f3d18a11df56ba0f3d7c790b3f10f}{graph}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Cliente el cual prueba la distancia mas corta entre dos vertices, solucion dada por el servidor. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classClient_ab9cb979d7fb7dd0bd3bf645279a6ffb5}\label{classClient_ab9cb979d7fb7dd0bd3bf645279a6ffb5}} 
+\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\subsubsection{\texorpdfstring{Client()}{Client()}}
+{\footnotesize\ttfamily Client\+::\+Client (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+Constructor Encargado de inicializar la gui y el nuevo socket. Establece el dispositivo stream al socket creado, luego elegimos la version Qt\+\_\+4\+\_\+0 para que se puedo conectar con el servidor. Para la G\+UI se le agregan todos los items necesarios\+: scene, grapchis\+View, combo\+Boxs,labels y el push button. Ademas se dibuja la representacion del grafo. Luego se implementa las signals connected(),disconnected(), ready\+Read() y bytes\+Written() para el buen funcionamiento de la conexion cliente-\/servidor. Por ultimo se avanza a conectar con el servidor llamando a la funcion connect\+To\+Server().
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classClient_a840e519ca781888cbd54181572ebe3a7}\label{classClient_a840e519ca781888cbd54181572ebe3a7}} 
+\index{Client@{Client}!````~Client@{$\sim$\+Client}}
+\index{````~Client@{$\sim$\+Client}!Client@{Client}}
+\subsubsection{\texorpdfstring{$\sim$\+Client()}{~Client()}}
+{\footnotesize\ttfamily Client\+::$\sim$\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Destructor del Cliente, cierra el cliente. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classClient_a2a9162c903a379aa1f86d57eb416e5bd}\label{classClient_a2a9162c903a379aa1f86d57eb416e5bd}} 
+\index{Client@{Client}!set\+Graph@{set\+Graph}}
+\index{set\+Graph@{set\+Graph}!Client@{Client}}
+\subsubsection{\texorpdfstring{set\+Graph()}{setGraph()}}
+{\footnotesize\ttfamily void Client\+::set\+Graph (\begin{DoxyParamCaption}\item[{Q\+String\+List}]{list }\end{DoxyParamCaption})}
+
+
+
+Establece el grafo solucionado. 
+
+Establece el grafo que contiene la solucion del algoritmo Floyd-\/\+Warshall.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & solucion del grafo\\
+\hline
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classClient_a339f3d18a11df56ba0f3d7c790b3f10f}\label{classClient_a339f3d18a11df56ba0f3d7c790b3f10f}} 
+\index{Client@{Client}!graph@{graph}}
+\index{graph@{graph}!Client@{Client}}
+\subsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily Q\+String\+List Client\+::graph}
+
+Lista que contiene el grafo solucionado 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+client.\+h\item 
+client.\+cpp\end{DoxyCompactItemize}

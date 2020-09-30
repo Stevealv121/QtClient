@@ -1,6 +1,23 @@
 #include "client.h"
 #include "ui_client.h"
 
+/**
+ * @brief Constructor
+ * Encargado de inicializar la gui y el nuevo socket.
+ * Establece el dispositivo stream al socket creado,
+ * luego elegimos la version Qt_4_0 para que se puedo conectar
+ * con el servidor.
+ * Para la GUI se le agregan todos los items necesarios:
+ * scene, grapchisView, comboBoxs,labels y el push button.
+ * Ademas se dibuja la representacion del grafo.
+ * Luego se implementa las signals connected(),disconnected(),
+ * readyRead() y bytesWritten() para el buen funcionamiento
+ * de la conexion cliente-servidor.
+ * Por ultimo se avanza a conectar con el servidor llamando
+ * a la funcion connectToServer().
+ *
+ * @param parent
+ */
 Client::Client(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Client),
@@ -41,17 +58,31 @@ Client::Client(QWidget *parent) :
     }
 }
 
+/**
+ * @brief Destructor del Cliente, cierra el cliente
+ *
+ */
 Client::~Client()
 {
     delete ui;
 }
 
+/**
+ * @brief Se conecta al servidor mediante
+ * socket->connectToHost() y le pide la direccion
+ * de IP y el numero de puerto ubicado.
+ *
+ */
 void Client::connectToServer()
 {
 
     tcpSocket->connectToHost("127.0.0.1",1234);
 }
 
+/**
+ * @brief Calcula la distancia mas corta entre los vertices seleccionados
+ *
+ */
 void Client::on_pushButton_clicked()
 {
    //A Cases
@@ -163,6 +194,11 @@ void Client::on_pushButton_clicked()
 
 }
 
+/**
+ * @brief El cliente se conecta satisfactoriamente al servidor y le escribe para asi
+ * obtener la solucion del algoritmo Floyd-Warshall
+ *
+ */
 void Client::connected()
 {
     qDebug() << "Connected!";
@@ -170,22 +206,39 @@ void Client::connected()
     tcpSocket->write("Hello Server\r\n");
 }
 
+/**
+ * @brief Cliente se desconecta del servidor
+ *
+ */
 void Client::disconnected()
 {
     qDebug() << "Disconnected!";
 }
 
+/**
+ * @brief Numero de bytes escritos al servidor
+ *
+ * @param bytes numero de bytes
+ */
 void Client::bytesWritten(qint64 bytes)
 {
     qDebug() << "We wrote : "<< bytes;
 }
 
+/**
+ * @brief Utilizamos QDataStream para la lectura del socket
+ * Empezamos llamando startTransaction() lo que hace es resetear
+ * el estado del stream para indicar que nueva data ha sido
+ * recibida en el socket. Luego procedemos utilizar el operador
+ * ">>" de QDataStream para leer test. Por ultimo establecemos
+ * el grafo llamando a setGraph y le pasamos test al constructor.
+ *
+ */
 void Client::readyRead()
 {
     qDebug() << "Reading...";
 
     in.startTransaction();
-    QString message;
     QStringList test;
 
     in >> test;
@@ -193,10 +246,15 @@ void Client::readyRead()
 
 }
 
+/**
+ * @brief Dibuja el grafo representado
+ * Los vertices y aristas con sus respectivos
+ * pesos y texto son agregados a la scene.
+ *
+ */
 void Client::drawGraph(){
 
     QBrush blackBrush(Qt::black);
-    QBrush blueBrush(Qt::blue);
     QBrush whiteBrush(Qt::white);
     QPen blackPen(Qt::black);
     blackPen.setWidth(4);
@@ -262,6 +320,12 @@ void Client::drawGraph(){
     text9->setScale(2);
 }
 
+/**
+ * @brief Establece el grafo que contiene la solucion del
+ * algoritmo Floyd-Warshall
+ *
+ * @param list
+ */
 void Client::setGraph(QStringList list)
 {
     graph = list;
